@@ -50,8 +50,8 @@ class ReactNativeZoomableView extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { zoomEnabled, initialZoom } = this.props;
-    if (prevProps.zoomEnabled && !zoomEnabled) {
+    const { zoomEnabled, initialZoom, shouldResetZoomOnDisable } = this.props;
+    if (prevProps.zoomEnabled && !zoomEnabled && !shouldResetZoomOnDisable) {
       this.setState({
         zoomLevel: initialZoom,
         ...initialState
@@ -632,6 +632,7 @@ class ReactNativeZoomableView extends Component {
 ReactNativeZoomableView.propTypes = {
   ...View.propTypes,
   zoomEnabled: PropTypes.bool,
+  shouldResetZoomOnDisable: PropTypes.bool,
   initialZoom: PropTypes.number,
   initialOffsetX: PropTypes.number,
   initialOffsetY: PropTypes.number,
